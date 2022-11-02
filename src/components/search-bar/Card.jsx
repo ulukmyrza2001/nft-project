@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { MdImageNotSupported } from 'react-icons/md'
 import { Flex } from '../../styles/styles-for-position/style'
-import d from '../../assets/images/macos-ventura-macos-13-macos-2022-stock-dark-mode-5k-retina-6016x6016-8133.jpg'
 
 const Card = ({ nft, onClick }) => {
    return (
