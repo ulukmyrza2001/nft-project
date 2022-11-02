@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { MdImageNotSupported } from 'react-icons/md'
 import { Flex } from '../../styles/styles-for-position/style'
+import d from '../../assets/images/macos-ventura-macos-13-macos-2022-stock-dark-mode-5k-retina-6016x6016-8133.jpg'
 
 const Card = ({ nft, onClick }) => {
    return (
@@ -13,14 +14,18 @@ const Card = ({ nft, onClick }) => {
          )}
          <Flex direction="column" gap="10px" p="0.4rem">
             <Title>{nft?.name}</Title>
-            <Button onClick={() => onClick(nft.id, nft?.creator?.address)}>
+            <Button
+               onClick={() =>
+                  onClick(nft?.asset_contract?.address, nft?.token_id)
+               }
+            >
                View Details
             </Button>
          </Flex>
       </CardStyled>
    )
 }
-const Img = styled.div`
+const Img = styled.img`
    width: 100%;
    aspect-ratio: 15/10;
    object-fit: cover;

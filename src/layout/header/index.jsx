@@ -1,14 +1,17 @@
 import React from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Nft from '../../assets/icons/nft.svg'
 import SearchBar from '../../components/search-bar'
 
 const Header = () => {
+   const navigate = useNavigate()
+   const { pathname } = useLocation()
    return (
       <HeaderStyled>
          <Container>
-            <LogoNft />
-            <SearchBar />
+            <LogoNft onClick={() => navigate('/')} />
+            {pathname === '/' && <SearchBar />}
          </Container>
       </HeaderStyled>
    )
@@ -37,6 +40,7 @@ const LogoNft = styled.div`
    background-position: center;
    width: 40px;
    height: 40px;
+   cursor: pointer;
 `
 
 export default Header

@@ -4,7 +4,7 @@ const ROUTES = {
       label: 'Listings',
    },
    DETAIL_LISTINGS: {
-      path: '/nft/:id',
+      path: '/nft/:address/:id',
       label: 'Listings',
    },
 }

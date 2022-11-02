@@ -23,7 +23,13 @@ const SearchBar = () => {
       debouncedCallback()
    }, [debouncedCallback])
 
-   return <SearchInput onChange={handleChangeInput} value={value} />
+   return (
+      <SearchInput
+         setValue={setValue}
+         onChange={handleChangeInput}
+         value={value}
+      />
+   )
 }
 
 export default SearchBar

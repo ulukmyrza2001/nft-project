@@ -2,18 +2,22 @@ import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { CgSearch } from 'react-icons/cg'
 import FoundData from './FoundData'
+import { Flex } from '../../styles/styles-for-position/style'
 
-const SearchInput = ({ value, onChange }) => {
+const SearchInput = ({ value, onChange, setValue }) => {
    const inputRef = useRef()
 
    return (
       <InputWrapper>
-         <CgSearch
-            onClick={() => inputRef.current.focus()}
-            color="gray"
-            fontSize={20}
-            cursor="pointer"
-         />
+         <Flex width="25px">
+            <CgSearch
+               onClick={() => inputRef.current.focus()}
+               color="gray"
+               fontSize={20}
+               cursor="pointer"
+            />
+         </Flex>
+
          <InputStyled
             onChange={(e) => onChange(e.target.value)}
             isValid={!!value}
@@ -21,7 +25,7 @@ const SearchInput = ({ value, onChange }) => {
             placeholder="Search..."
             type="text"
          />
-         <FoundData isVisible={value} />
+         <FoundData setValue={setValue} isVisible={value} />
       </InputWrapper>
    )
 }
@@ -33,6 +37,9 @@ const InputWrapper = styled.div`
    align-items: center;
    padding: 0 1rem;
    border-radius: 6px;
+   @media (max-width: 500px) {
+      max-width: 100%;
+   }
 `
 const InputStyled = styled.input`
    padding: ${({ isValid }) => (isValid ? '1rem' : '1rem 0')};

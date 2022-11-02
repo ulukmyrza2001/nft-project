@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Card from '../../components/card/Card'
 import LoaderCard from '../../components/loader/LoaderCard'
@@ -8,9 +9,16 @@ import { Grid } from '../../styles/styles-for-position/style'
 
 const Listings = () => {
    const dispatch = useDispatch()
+   const navigate = useNavigate()
    const { cards, isLoading } = useSelector((state) => state.nft)
 
-   const renderCards = () => cards.map((el) => <Card key={el.id} nft={el} />)
+   const havigateToInnerPage = (address, tokenId) =>
+      navigate(`nft/${address}/${tokenId}`)
+
+   const renderCards = () =>
+      cards.map((el) => (
+         <Card onClick={havigateToInnerPage} key={el.id} nft={el} />
+      ))
 
    useEffect(() => {
       dispatch(getNfts())

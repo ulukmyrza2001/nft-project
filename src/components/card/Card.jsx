@@ -10,7 +10,7 @@ const Card = ({ nft, onClick }) => {
          <ZoomImg>
             {(nft?.image_url && <img src={nft?.image_url} alt="IMG..." />) || (
                <Flex width="100%" justify="center">
-                  <MdImageNotSupported size={100} color="lightgray" />
+                  <MdImageNotSupported size={216} color="lightgray" />
                </Flex>
             )}
          </ZoomImg>
@@ -20,7 +20,11 @@ const Card = ({ nft, onClick }) => {
                Created date :{' '}
                <b>{convertDateInToString(nft.collection.created_date)}</b>
             </Text>
-            <Button onClick={() => onClick(nft.id, nft?.creator?.address)}>
+            <Button
+               onClick={() =>
+                  onClick(nft?.asset_contract?.address, nft?.token_id)
+               }
+            >
                View Details
             </Button>
          </Flex>

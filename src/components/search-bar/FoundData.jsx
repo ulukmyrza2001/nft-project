@@ -1,14 +1,23 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Grid } from '../../styles/styles-for-position/style'
 import Card from './Card'
 
-const FoundData = ({ isVisible }) => {
+const FoundData = ({ isVisible, setValue }) => {
+   const navigate = useNavigate()
    const { foundData } = useSelector((state) => state.nft)
 
+   const navigateToInnerPage = (address, tokenId) => {
+      setValue('')
+      navigate(`nft/${address}/${tokenId}`)
+   }
+
    const renderFoundData = () =>
-      foundData.map((el) => <Card nft={el} key={el.id} />)
+      foundData.map((el) => (
+         <Card onClick={navigateToInnerPage} nft={el} key={el.id} />
+      ))
 
    return isVisible ? (
       <Container>
@@ -38,6 +47,13 @@ const Container = styled.div`
       width: 100vw;
       left: 0;
       transform: translateX(-60%);
+      max-height: 80vh;
+      overflow-y: auto;
+   }
+   @media (max-width: 500px) {
+      width: 100vw;
+      left: 50%;
+      transform: translateX(-50%);
       max-height: 80vh;
       overflow-y: auto;
    }

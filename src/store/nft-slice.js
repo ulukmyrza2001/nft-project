@@ -22,10 +22,10 @@ export const getNfts = createAsyncThunk(
 )
 export const getOneNft = createAsyncThunk(
    'nft/getOneNft',
-   async (_, { rejectWithValue }) => {
+   async ({ address, id }, { rejectWithValue }) => {
       try {
          const response = await fetch(
-            'https://api.opensea.io/api/v1/asset/0x495f947276749ce646f68ac8c248420045cb7b5e/50237171711830975693577941629445627378898528513277833034196857903714817540097'
+            `https://api.opensea.io/api/v1/asset/${address}/${id}`
          )
          const result = await response.json()
          if (!response.ok) {
@@ -45,6 +45,7 @@ export const getOneNft = createAsyncThunk(
 const initialState = {
    cards: [],
    foundData: [],
+   oneNft: null,
    isLoading: false,
 }
 
@@ -71,6 +72,16 @@ const nftSlice = createSlice({
          state.cards = action.payload?.assets
       },
       [getNfts.rejected]: (state) => {
+         state.isLoading = false
+      },
+      [getOneNft.pending]: (state) => {
+         state.isLoading = true
+      },
+      [getOneNft.fulfilled]: (state, action) => {
+         state.isLoading = false
+         state.oneNft = action.payload
+      },
+      [getOneNft.rejected]: (state) => {
          state.isLoading = false
       },
    },
