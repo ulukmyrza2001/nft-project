@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { Provider } from 'react-redux'
@@ -11,7 +11,9 @@ root.render(
    <React.StrictMode>
       <BrowserRouter>
          <Provider store={store}>
-            <App />
+            <Suspense fallback={<div>loading...</div>}>
+               <App />
+            </Suspense>
          </Provider>
       </BrowserRouter>
    </React.StrictMode>
