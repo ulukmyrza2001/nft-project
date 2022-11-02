@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { BiArrowBack } from 'react-icons/bi'
 import Nft from '../../assets/icons/nft.svg'
 import SearchBar from '../../components/search-bar'
 
@@ -11,7 +12,13 @@ const Header = () => {
       <HeaderStyled>
          <Container>
             <LogoNft onClick={() => navigate('/')} />
-            {pathname === '/' && <SearchBar />}
+            {(pathname === '/' && <SearchBar />) || (
+               <BiArrowBack
+                  cursor="pointer"
+                  size={20}
+                  onClick={() => navigate(-1)}
+               />
+            )}
          </Container>
       </HeaderStyled>
    )
@@ -27,6 +34,7 @@ const HeaderStyled = styled.header`
 const Container = styled.div`
    max-width: 1200px;
    width: 100%;
+   height: 100%;
    margin: 0 auto;
    padding: 1rem 0.5rem;
    display: flex;
