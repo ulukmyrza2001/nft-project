@@ -138,7 +138,7 @@ const Listings = () => {
             <br />
             <br />
             <br />
-            <img
+            {/* <img
                style={{ objectFit: 'cover', margin: 'auto' }}
                src={Img1}
                width="50%"
@@ -155,7 +155,7 @@ const Listings = () => {
                height="auto"
                alt=""
             />
-            <br />
+            <br /> */}
             <br />
             <h1>Заключение</h1>
             <i>
